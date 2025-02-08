@@ -1,75 +1,151 @@
 package cuentas;
+
+/**
+ * Clase que representa una cuenta bancaria.
+ * Permite realizar operaciones de ingreso y retirada de dinero.
+ * 
+ * @author rodri
+ */
 public class CCuenta {
 
-
+    /** Nombre del titular de la cuenta */
     private String nombre;
+    
+    /** Número de cuenta bancaria */
     private String cuenta;
+    
+    /** Saldo disponible en la cuenta */
     private double saldo;
+    
+    /** Tipo de interés asociado a la cuenta */
     private double tipoInterés;
 
-    public CCuenta()
-    {
+    /**
+     * Constructor por defecto de la clase CCuenta.
+     */
+    public CCuenta() {
     }
 
-    public CCuenta(String nom, String cue, double sal, double tipo)
-    {
-        nombre =nom;
-        cuenta=cue;
-        saldo=sal;
+    /**
+     * Constructor con parámetros que inicializa la cuenta con los valores proporcionados.
+     * 
+     * @param nom   Nombre del titular de la cuenta.
+     * @param cue   Número de cuenta bancaria.
+     * @param sal   Saldo inicial de la cuenta.
+     * @param tipo  Tipo de interés asociado a la cuenta.
+     */
+    public CCuenta(String nom, String cue, double sal, double tipo) {
+        nombre = nom;
+        cuenta = cue;
+        saldo = sal;
+        tipoInterés = tipo; // Se añade la inicialización del tipo de interés
     }
-    
-    
-// 3.2 Realizamos un cambio en el codigo 
+
+    /**
+     * Obtiene el nombre del titular de la cuenta.
+     * 
+     * @return Nombre del titular.
+     */
     public String getNombre() {
-		return nombre;
-	}
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    /**
+     * Establece el nombre del titular de la cuenta.
+     * 
+     * @param nombre Nuevo nombre del titular.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getCuenta() {
-		return cuenta;
-	}
+    /**
+     * Obtiene el número de cuenta bancaria.
+     * 
+     * @return Número de cuenta.
+     */
+    public String getCuenta() {
+        return cuenta;
+    }
 
-	public void setCuenta(String cuenta) {
-		this.cuenta = cuenta;
-	}
+    /**
+     * Establece el número de cuenta bancaria.
+     * 
+     * @param cuenta Nuevo número de cuenta.
+     */
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
 
-	public double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-
-	public double getTipoInterés() {
-		return tipoInterés;
-	}
-
-	public void setTipoInterés(double tipoInterés) {
-		this.tipoInterés = tipoInterés;
-	}
-
-	public double estado()
-    {
+    /**
+     * Obtiene el saldo actual de la cuenta.
+     * 
+     * @return Saldo de la cuenta.
+     */
+    public double getSaldo() {
         return saldo;
     }
 
-    public void ingresar(double cantidad) throws Exception
-    {
-        if (cantidad<0)
+    /**
+     * Establece el saldo de la cuenta.
+     * 
+     * @param saldo Nuevo saldo de la cuenta.
+     */
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    /**
+     * Obtiene el tipo de interés de la cuenta.
+     * 
+     * @return Tipo de interés.
+     */
+    public double getTipoInterés() {
+        return tipoInterés;
+    }
+
+    /**
+     * Establece el tipo de interés de la cuenta.
+     * 
+     * @param tipoInterés Nuevo tipo de interés.
+     */
+    public void setTipoInterés(double tipoInterés) {
+        this.tipoInterés = tipoInterés;
+    }
+
+    /**
+     * Devuelve el saldo actual de la cuenta.
+     * 
+     * @return Saldo disponible.
+     */
+    public double estado() {
+        return saldo;
+    }
+
+    /**
+     * Ingresa una cantidad de dinero en la cuenta.
+     * 
+     * @param cantidad Cantidad a ingresar.
+     * @throws Exception Si la cantidad es negativa.
+     */
+    public void ingresar(double cantidad) throws Exception {
+        if (cantidad < 0)
             throw new Exception("No se puede ingresar una cantidad negativa");
         saldo = saldo + cantidad;
     }
 
-    public void retirar(double cantidad) throws Exception
-    {
+    /**
+     * Retira una cantidad de dinero de la cuenta.
+     * 
+     * @param cantidad Cantidad a retirar.
+     * @throws Exception Si la cantidad es negativa o no hay suficiente saldo.
+     */
+    public void retirar(double cantidad) throws Exception {
         if (cantidad <= 0)
-            throw new Exception ("No se puede retirar una cantidad negativa");
-        if (estado()< cantidad)
-            throw new Exception ("No se hay suficiente saldo");
+            throw new Exception("No se puede retirar una cantidad negativa");
+        if (estado() < cantidad)
+            throw new Exception("No hay suficiente saldo");
         saldo = saldo - cantidad;
     }
 }
+
